@@ -1,12 +1,26 @@
-@for (task of taskService.tasks(); track task.id) {
-<div class="task-item">
-    <div class="task-content">
-        <h3>
-            <a [routerLink]="['/task', task.id]">{{ task.title }}</a>
-        </h3>
-        <p>{{ task.description }}</p>
-
-        <small>{{ task.CreatedAt.toLocaleDateString() }}</small>
-    </div>
+<div class="filters">
+    <button (click)="setFilter('all')" [class.active]="filter() === 'all'">All</button>
+    <button (click)="setFilter('active')" [class.active]="filter() === 'active'">Active</button>
+    <button (click)="setFilter('completed')" [class.active]="filter() === 'completed'">Completed</button>
 </div>
-}
+
+<div class="task">
+
+    @if(filteredTasks().length === 0) {
+    <p class="emplty">No tasks to display.</p>
+    }
+
+    @for (task of filteredTasks(); track task.id) {
+    <div class="task-item">
+        <div class="task-content">
+            <h3>
+                <a [routerLink]="['/task', task.id]">{{ task.title }}</a>
+            </h3>
+            <p>{{ task.description }}</p>
+
+            <small>{{ task.CreatedAt.toLocaleDateString() }}</small>
+        </div>
+        <button class="delete-btn" (click)="taskService.deleteTask(task.id)">Delete</button>
+    </div>
+    }
+</div>

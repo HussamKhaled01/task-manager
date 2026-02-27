@@ -19,7 +19,7 @@
         <p>{{ currentTask.CreatedAt.toLocaleDateString() }}</p>
       </div>
 
-      
+
 
       <div class="detail-row">
         <strong>Status:</strong>
@@ -27,13 +27,12 @@
       </div>
     </div>
     <div class="actions">
-        <button routerLink="/" class="back-btn">Back to List</button>
-      </div>
-
-    <!-- <div class="actions">
       <button routerLink="/" class="back-btn">Back to List</button>
-      <button (click)="deleteTas()" class="delete-btn">Delete Task</button>
-    </div> -->
+      <button (click)="deleteTask()" class="delete-btn">Delete Task</button>
+
+    </div>
+
+
   </div>
   } @else {
   <div class="not-found">
