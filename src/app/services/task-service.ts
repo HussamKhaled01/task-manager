@@ -40,4 +40,15 @@ export class TaskService {
   getTask(id: number){
     return this.tasksSignal().find(task => task.id === id);
   }
+
+  addTask(title: string, description: string) {
+    const newTask: Task = {
+      id: this.tasks.length + 1,
+      title,
+      description,
+      completed: false,
+      CreatedAt: new Date(),
+    };
+    this.tasksSignal.update((tasks) => [...tasks, newTask]);
+  }
 }
